@@ -8,9 +8,16 @@ class App:
         root.title(app_name)
         root.iconbitmap(icon_path)
         self.files = None
+        self.files_list = []
 
         files_button = Button(root, command=self.open_files, text="Выберите файлы")
         files_button.pack()
+
+        self.image_listbox = Listbox(root, width=100, bg="#505050")
+        self.image_listbox.pack()
+
+        lists_button = Button(root, text="Создать список")
+        lists_button.pack()
 
         root.mainloop()
 
@@ -20,6 +27,14 @@ class App:
                                                 filetypes=(("Image files", "*.png *.jpg"), ("All files", "*.*"))
                                                 )
         print("Выбранные файлы:", self.files)
+        self.files_list = self.files
+        self.upload_images(self.files_list)
+
+    def upload_images(self, new_list):
+        # self.images_list=[]
+        for filename in new_list:
+            self.image_listbox.insert(END, filename)
+            # self.images_list.append(filename)
 
 if __name__ == "__main__":
     synapse_craft = App("300x200", "SynapseCraft", "resource/icons/brain-3449630_640.ico")
