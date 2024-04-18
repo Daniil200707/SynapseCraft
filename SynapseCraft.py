@@ -9,7 +9,7 @@ class App:
         root.iconbitmap(icon_path)
         self.files = None
 
-        files_button = Button(root, command=self.open_files, text="")
+        files_button = Button(root, command=self.open_files, text="Выберите файлы")
         files_button.pack()
 
         root.mainloop()
@@ -17,7 +17,7 @@ class App:
     def open_files(self):
         self.files = filedialog.askopenfilenames(
                                                 title="Выберите файлы",
-                                                filetypes=(("Image files", "*.png"), ("All files", "*.*"))
+                                                filetypes=(("Image files", "*.png *.jpg"), ("All files", "*.*"))
                                                 )
         print("Выбранные файлы:", self.files)
 
