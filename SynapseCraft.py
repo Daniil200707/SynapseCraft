@@ -16,7 +16,7 @@ class App:
         self.image_listbox = Listbox(root, width=100, bg="#505050")
         self.image_listbox.pack()
 
-        lists_button = Button(root, text="Создать список")
+        lists_button = Button(root, text="Создать список", command=lambda: create_listbox(root))
         lists_button.pack()
 
         root.mainloop()
@@ -35,6 +35,10 @@ class App:
         for filename in new_list:
             self.image_listbox.insert(END, filename)
             # self.images_list.append(filename)
+
+def create_listbox(window):
+    listbox = Listbox(window, width=100, bg="#505050")
+    listbox.pack()
 
 if __name__ == "__main__":
     synapse_craft = App("300x200", "SynapseCraft", "resource/icons/brain-3449630_640.ico")
