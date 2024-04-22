@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
+import time
 
 class App:
     def __init__(self, window_size, app_name, icon_path):
@@ -16,7 +17,7 @@ class App:
         self.image_listbox = Listbox(root, width=100, bg="#505050")
         self.image_listbox.pack()
 
-        lists_button = Button(root, text="Создать список", command=lambda: create_listbox(root))
+        lists_button = Button(root, text="Создать список", command=lambda: create_listbox(root, "1"))
         lists_button.pack()
 
         root.mainloop()
@@ -36,9 +37,12 @@ class App:
             self.image_listbox.insert(END, filename)
             # self.images_list.append(filename)
 
-def create_listbox(window):
+def create_listbox(window, text):
+    new_text = text + str(time.time())
     listbox = Listbox(window, width=100, bg="#505050")
     listbox.pack()
+    button = Button(window, text=new_text)
+    button.pack()
 
 if __name__ == "__main__":
     synapse_craft = App("300x200", "SynapseCraft", "resource/icons/brain-3449630_640.ico")
