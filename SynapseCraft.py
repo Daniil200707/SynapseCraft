@@ -1,7 +1,8 @@
-from tkinter import *
+# from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
 import time
+from data import *
 
 class ScrollableFrame(Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -48,6 +49,24 @@ class App:
 
         name_label = Label(root, text="Input name:")
         name_label.place(x=650, y=0)
+        name_entry = Entry(root)
+        name_entry.place(x=750, y=0)
+        out_dim_label = Label(root, text="Input out dim:")
+        out_dim_label.place(x=900, y=0)
+        out_dim_entry = Entry(root)
+        out_dim_entry.place(x=1000, y=0)
+        odl_label = Label(root, text="Input odl:")
+        odl_label.place(x=650, y=50)
+        odl_entry = Entry(root)
+        odl_entry.place(x=750, y=50)
+        h_dim_label = Label(root, text="Input h dim:")
+        h_dim_label.place(x=900, y=50)
+        h_dim_entry = Entry(root)
+        h_dim_entry.place(x=1000, y=50)
+        alpha_label = Label(root, text="Input alpha:")
+        alpha_label.place(x=650, y=100)
+        alpha_entry = Entry(root)
+        alpha_entry.place(x=750, y=100)
 
         root.mainloop()
 
@@ -70,13 +89,9 @@ class App:
         new_text = text + str(time.time())
         listbox = Listbox(window, width=100, bg="#505050")
         listbox.pack()
-        button = Button(window, text=new_text, command=lambda: replace_data(self.image_listbox.get(0, END)))
+        button = Button(window, text=new_text, command=lambda: replace_data(self.image_listbox.get(0, END),
+                                                                            listbox, self.image_listbox))
         button.pack()
-
-        def replace_data(images_list):
-            for element in images_list:
-                listbox.insert("end", element)
-                self.image_listbox.delete(0, END)
 
 if __name__ == "__main__":
     synapse_craft = App("300x200", "SynapseCraft", "resource/icons/brain-3449630_640.ico")
