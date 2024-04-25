@@ -4,6 +4,7 @@ from tkinter import ttk
 import time
 from data import *
 
+
 class ScrollableFrame(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
