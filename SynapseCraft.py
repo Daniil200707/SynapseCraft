@@ -1,9 +1,8 @@
 # from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
-import time
+# import time
 from data import *
-
 
 class ScrollableFrame(Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -45,7 +44,7 @@ class App:
 
         lists_button = Button(scrollable_frame.scrollable_frame,
                               text="Создать список",
-                              command=lambda: self.create_listbox(scrollable_frame.scrollable_frame, "1"))
+                              command=lambda: create_listbox(scrollable_frame.scrollable_frame, "1"))
         lists_button.pack()
 
         name_label = Label(root, text="Input name:")
@@ -68,6 +67,10 @@ class App:
         alpha_label.place(x=650, y=100)
         alpha_entry = Entry(root)
         alpha_entry.place(x=750, y=100)
+        num_epochs_label = Label(root, text="Input num epochs:")
+        num_epochs_label.place(x=900, y=100)
+        num_epochs_entry = Entry(root)
+        num_epochs_entry.place(x=1000, y=100)
 
         root.mainloop()
 
@@ -85,14 +88,6 @@ class App:
         for filename in new_list:
             self.image_listbox.insert(END, filename)
             # self.images_list.append(filename)
-
-    def create_listbox(self, window, text):
-        new_text = text + str(time.time())
-        listbox = Listbox(window, width=100, bg="#505050")
-        listbox.pack()
-        button = Button(window, text=new_text, command=lambda: replace_data(self.image_listbox.get(0, END),
-                                                                            listbox, self.image_listbox))
-        button.pack()
 
 if __name__ == "__main__":
     synapse_craft = App("300x200", "SynapseCraft", "resource/icons/brain-3449630_640.ico")
