@@ -44,7 +44,8 @@ class App:
 
         lists_button = Button(scrollable_frame.scrollable_frame,
                               text="Создать список",
-                              command=lambda: create_listbox(scrollable_frame.scrollable_frame, "1"))
+                              command=lambda: create_listbox(scrollable_frame.scrollable_frame, "1",
+                                                             self.image_listbox))
         lists_button.pack()
 
         name_label = Label(root, text="Input name:")
