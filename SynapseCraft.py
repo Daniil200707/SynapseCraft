@@ -35,6 +35,7 @@ class App:
         self.files_list = []
         scrollable_frame = ScrollableFrame(root)
         scrollable_frame.pack(fill="both", expand=True)
+        self.out_list = []
 
         files_button = Button(scrollable_frame.scrollable_frame, command=self.open_files, text="Выберите файлы")
         files_button.pack()
@@ -44,11 +45,11 @@ class App:
 
         lists_button = Button(scrollable_frame.scrollable_frame,
                               text="Создать список",
-                              command=lambda: create_listbox(scrollable_frame.scrollable_frame, "1",
+                              command=lambda: create_listbox(scrollable_frame.scrollable_frame, self.out_list,
                                                              self.image_listbox))
         lists_button.pack()
 
-        name_label = Label(root, text="Input name:")
+        name_label = Label(root, text="Input file name:")
         name_label.place(x=650, y=0)
         name_entry = Entry(root)
         name_entry.place(x=750, y=0)
@@ -56,10 +57,10 @@ class App:
         out_dim_label.place(x=900, y=0)
         out_dim_entry = Entry(root)
         out_dim_entry.place(x=1000, y=0)
-        odl_label = Label(root, text="Input odl:")
-        odl_label.place(x=650, y=50)
-        odl_entry = Entry(root)
-        odl_entry.place(x=750, y=50)
+        batch_size_label = Label(root, text="Input batch size:")
+        batch_size_label.place(x=650, y=50)
+        batch_size_entry = Entry(root)
+        batch_size_entry.place(x=750, y=50)
         h_dim_label = Label(root, text="Input h dim:")
         h_dim_label.place(x=900, y=50)
         h_dim_entry = Entry(root)
@@ -72,6 +73,10 @@ class App:
         num_epochs_label.place(x=900, y=100)
         num_epochs_entry = Entry(root)
         num_epochs_entry.place(x=1000, y=100)
+        generate_button = Button(root, text="Generate", command=lambda: learning(self.out_list))
+        generate_button.place(x=650, y=150)
+        load_canvas = Canvas(root, bg="#000000", height=20)
+        load_canvas.place(x=750, y=150)
 
         root.mainloop()
 
@@ -82,13 +87,7 @@ class App:
                                                 )
         print("Выбранные файлы:", self.files)
         self.files_list = self.files
-        self.upload_images(self.files_list)
-
-    def upload_images(self, new_list):
-        # self.images_list=[]
-        for filename in new_list:
-            self.image_listbox.insert(END, filename)
-            # self.images_list.append(filename)
+        upload_images(self.files_list, self.image_listbox)
 
 if __name__ == "__main__":
     synapse_craft = App("300x200", "SynapseCraft", "resource/icons/brain-3449630_640.ico")
