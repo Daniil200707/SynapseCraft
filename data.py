@@ -1,4 +1,6 @@
 from tkinter import *
+from cv2 import *
+import time
 
 y_dict = {}
 
@@ -18,11 +20,20 @@ def replace_data(images_list, input_listbox, image_listbox, y):
         image_listbox.delete(0, END)
     y_dict[y] = images_list
 
-def learning(list_of_y: list, file_name="a.csv"):
-    list_of_lists = []
-    for element in list_of_y:
-        list_of_lists.append(y_dict[element])
-    print(list_of_lists)
+def learning(file_name="a.csv", progress_bar=None):
+    i = 0
+    for element in y_dict.items():
+        percent = 100
+        expected_value = percent / len(element[1])
+        i += expected_value
+        if progress_bar:
+            progress_bar.configure(value=i)
+            progress_bar.update()
+            time.sleep(1)
+
+    if progress_bar:
+        progress_bar.configure(value=100)
+
 
 def upload_images(new_list, image_listbox):
     for filename in new_list:

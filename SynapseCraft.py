@@ -3,6 +3,7 @@ from tkinter import filedialog
 from tkinter import ttk
 # import time
 from data import *
+from tkinter.ttk import Progressbar
 
 class ScrollableFrame(Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -42,6 +43,8 @@ class App:
 
         self.image_listbox = Listbox(scrollable_frame.scrollable_frame, width=100, bg="#505050")
         self.image_listbox.pack()
+        load_canvas = Progressbar(root, orient=HORIZONTAL, mode="determinate", length=200)
+        load_canvas.place(x=750, y=150)
 
         lists_button = Button(scrollable_frame.scrollable_frame,
                               text="Создать список",
@@ -73,10 +76,9 @@ class App:
         num_epochs_label.place(x=900, y=100)
         num_epochs_entry = Entry(root)
         num_epochs_entry.place(x=1000, y=100)
-        generate_button = Button(root, text="Generate", command=lambda: learning(self.out_list))
+        generate_button = Button(root, text="Generate", command=lambda: learning(self.out_list,
+                                                                                 progress_bar=load_canvas))
         generate_button.place(x=650, y=150)
-        load_canvas = Canvas(root, bg="#000000", height=20)
-        load_canvas.place(x=750, y=150)
 
         root.mainloop()
 
