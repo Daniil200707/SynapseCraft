@@ -76,8 +76,7 @@ class App:
         num_epochs_label.place(x=900, y=100)
         num_epochs_entry = Entry(root)
         num_epochs_entry.place(x=1000, y=100)
-        generate_button = Button(root, text="Generate", command=lambda: learning(self.out_list,
-                                                                                 progress_bar=load_canvas))
+        generate_button = Button(root, text="Generate", command=lambda: learning(progress_bar=load_canvas))
         generate_button.place(x=650, y=150)
 
         root.mainloop()
