@@ -1,13 +1,16 @@
 from tkinter import *
-import cv2
-import time
-from pathlib import Path
-from shutil import rmtree
 from PIL import Image
 
 y_dict = {}
 
 def create_listbox(window, y_list: list, self_image_listbox):
+    """
+    Writes number of outputs and create buttons and listbox
+    :param window: the root of tkinter
+    :param y_list: the list osf saves y of dataset
+    :param self_image_listbox: the listbox in class
+    :return: none
+    """
     new_text = f"y{len(y_list)}"
     y_list.append(new_text)
     listbox = Listbox(window, width=100, bg="#505050")
@@ -17,6 +20,14 @@ def create_listbox(window, y_list: list, self_image_listbox):
     button.pack()
 
 def replace_data(images_list, input_listbox, image_listbox, y):
+    """
+    replace data to inner listbox
+    :param images_list: the list of images
+    :param input_listbox: to replace data
+    :param image_listbox: to export data for input_listbox
+    :param y: number for y
+    :return: none
+    """
     global y_dict
     for element in images_list:
         input_listbox.insert("end", element)
@@ -24,66 +35,50 @@ def replace_data(images_list, input_listbox, image_listbox, y):
     y_dict[y] = images_list
 
 def image_to_binary(image_path):
+    """
+    convert image to binary code
+    :param image_path: path to file of image
+    :return: binary list or None
+    """
     try:
         # Открываем изображение
         img = Image.open(image_path)
 
         # Преобразуем изображение в бинарный список
-        binary_list=list(img.tobytes())
+        binary_list = list(img.tobytes())
 
         return binary_list
     except Exception as e:
         print(f"Ошибка при преобразовании изображения в бинарный список: {e}")
         return None
 
-def create_bin_list(list_of_paths, count1, progress_bar):
+def create_bin_list(list_of_paths: dict, count1: int, progress_bar):
+    """
+    Crete bin_dict
+    :param list_of_paths: Path to images in list
+    :param count1: Count progress percent
+    :param progress_bar: The tkinter widget
+    :return: bin_dict
+    """
     binary_percent = 50
     million = 1000000
-    bin_list = []
-    for path_to_file in list_of_paths:
-        image = image_to_binary(path_to_file)
-        count1 += binary_percent / len(path_to_file)
-        bin_sum = 0
-        for bin_code in image:
-            bin_sum += bin_code
-        if progress_bar:
-            progress_bar.configure(value=count1)
-            progress_bar.update()
-        print(bin_sum / million)
-        bin_list.append(bin_sum / million)
+    bin_dict = {}
+    for path_to_file in list_of_paths.items():
+        bin_list = []
+        for element in path_to_file[1]:
+            image = image_to_binary(element)
+            count1 += binary_percent / len(list_of_paths)
+            bin_sum = 0
+            for bin_code in image:
+                bin_sum += bin_code
+            if progress_bar:
+                progress_bar.configure(value=count1)
+                progress_bar.update()
+            print(bin_sum / million)
+            bin_list.append(bin_sum / million)
+        bin_dict[path_to_file[0]] = bin_list
 
     if progress_bar:
         progress_bar.configure(value=100)
 
-    return bin_list
-
-def learning(file_name="a.csv", progress_bar=None):
-    for path in Path('resource/images').glob('*'):
-        if path.is_dir():
-            rmtree(path)
-        else:
-            path.unlink()
-    i = 0
-    path_list = []
-    for element in y_dict.items():
-        percent = 50
-        expected_value = percent / len(element[1])
-        i += expected_value
-        for filename in element[1]:
-            img = cv2.imread(filename)
-            img = cv2.resize(img, (200, 100))
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            img = cv2.Canny(img, 90, 90)
-            file_path = f"resource/images/{time.time()}.png"
-            cv2.imwrite(file_path, img)
-            path_list.append(file_path)
-        if progress_bar:
-            progress_bar.configure(value=i)
-            progress_bar.update()
-            time.sleep(1)
-
-    binary_list = create_bin_list(path_list, i, progress_bar)
-
-def upload_images(new_list, image_listbox):
-    for filename in new_list:
-        image_listbox.insert(END, filename)
+    return bin_dict

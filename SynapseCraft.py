@@ -4,9 +4,24 @@ from tkinter import ttk
 # import time
 from data import *
 from tkinter.ttk import Progressbar
+from learning_images import *
 
 class ScrollableFrame(Frame):
     def __init__(self, parent, *args, **kwargs):
+        """
+        Initialization method for the ScrollableFrame class.
+
+        Parameters:
+            parent: tk.Widget
+                The parent widget for this ScrollableFrame.
+            *args: tuple
+                Optional positional arguments.
+            **kwargs: dict
+                Optional keyword arguments.
+
+        This method initializes the ScrollableFrame by creating a canvas and a scrollbar. It also creates a scrollable frame within the canvas to contain other widgets. The scrollable frame is bound to the "<Configure>" event of the canvas, so that the scroll region is updated whenever the size of the frame changes. The canvas is then configured to display the scrollable frame and linked to the scrollbar for vertical scrolling. Finally, the canvas and scrollbar are packed within the ScrollableFrame widget.
+
+        """
         Frame.__init__(self, parent, *args, **kwargs)
 
         self.canvas = Canvas(self)
@@ -28,6 +43,27 @@ class ScrollableFrame(Frame):
 
 class App:
     def __init__(self, window_size, app_name, icon_path):
+        """
+        Initialize the GUI application with specified window size, application name, and icon path.
+
+        Args:
+            window_size (str): The size of the application window in the format "width x height".
+            app_name (str): The name of the application.
+            icon_path (str): The path to the icon file for the application.
+
+        Creates:
+            - The main Tkinter window with the specified window size, title, and icon.
+            - Initializes instance variables for file handling.
+            - Creates a scrollable frame within the main window.
+            - Creates a button for selecting files and a listbox to display selected files.
+            - Creates a progress bar for displaying loading progress.
+            - Creates input fields and labels for specifying parameters.
+            - Creates a button for generating output based on specified parameters.
+
+        Note:
+            - The `create_listbox` function is assumed to be defined elsewhere and used as a callback.
+            - The `learning` function is assumed to be defined elsewhere and used as a callback.
+        """
         root = Tk()
         root.geometry(window_size)
         root.title(app_name)
@@ -82,6 +118,13 @@ class App:
         root.mainloop()
 
     def open_files(self):
+        """Open dialog to select files, save selected files, and upload images to a listbox.
+
+                Opens a file dialog to allow the user to select multiple image files.
+                The selected files are saved to the instance variable self.files.
+                The function then calls upload_images() to upload the selected images to a listbox.
+
+                """
         self.files = filedialog.askopenfilenames(
                                                 title="Выберите файлы",
                                                 filetypes=(("Image files", "*.png *.jpg"), ("All files", "*.*"))
