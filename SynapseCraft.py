@@ -19,7 +19,11 @@ class ScrollableFrame(Frame):
             **kwargs: dict
                 Optional keyword arguments.
 
-        This method initializes the ScrollableFrame by creating a canvas and a scrollbar. It also creates a scrollable frame within the canvas to contain other widgets. The scrollable frame is bound to the "<Configure>" event of the canvas, so that the scroll region is updated whenever the size of the frame changes. The canvas is then configured to display the scrollable frame and linked to the scrollbar for vertical scrolling. Finally, the canvas and scrollbar are packed within the ScrollableFrame widget.
+        This method initializes the ScrollableFrame by creating a canvas and a scrollbar. It also creates a scrollable
+        frame within the canvas to contain other widgets. The scrollable frame is bound to the "<Configure>" event of
+        the canvas, so that the scroll region is updated whenever the size of the frame changes. The canvas is
+        then configured to display the scrollable frame and linked to the scrollbar for vertical scrolling. Finally,
+        the canvas and scrollbar are packed within the ScrollableFrame widget.
 
         """
         Frame.__init__(self, parent, *args, **kwargs)
@@ -112,7 +116,10 @@ class App:
         num_epochs_label.place(x=900, y=100)
         num_epochs_entry = Entry(root)
         num_epochs_entry.place(x=1000, y=100)
-        generate_button = Button(root, text="Generate", command=lambda: learning(progress_bar=load_canvas))
+
+        generate_button = Button(root, text="Generate", command=lambda: naming(name_entry, load_canvas, out_dim_entry,
+                                                                               h_dim_entry, alpha_entry,
+                                                                               num_epochs_entry, batch_size_entry))
         generate_button.place(x=650, y=150)
 
         root.mainloop()
@@ -132,6 +139,12 @@ class App:
         print("Выбранные файлы:", self.files)
         self.files_list = self.files
         upload_images(self.files_list, self.image_listbox)
+
+def naming(name, load_canvas, out_dim, h_dim, alpha, num_epochs, batch_size):
+    name_path = f"resource/csv/{name.get()}.csv"
+    learning(out_dim.get(), h_dim.get(), alpha.get(), num_epochs.get(), batch_size.get(), name_path,
+             progress_bar=load_canvas)
+
 
 if __name__ == "__main__":
     synapse_craft = App("300x200", "SynapseCraft", "resource/icons/brain-3449630_640.ico")

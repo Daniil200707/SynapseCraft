@@ -60,7 +60,7 @@ def create_bin_list(list_of_paths: dict, count1: int, progress_bar):
     :param progress_bar: The tkinter widget
     :return: bin_dict
     """
-    binary_percent = 50
+    binary_percent = 25
     million = 1000000
     bin_dict = {}
     for path_to_file in list_of_paths.items():
@@ -78,7 +78,4 @@ def create_bin_list(list_of_paths: dict, count1: int, progress_bar):
             bin_list.append(bin_sum / million)
         bin_dict[path_to_file[0]] = bin_list
 
-    if progress_bar:
-        progress_bar.configure(value=100)
-
-    return bin_dict
+    return bin_dict, count1
