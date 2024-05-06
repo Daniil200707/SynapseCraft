@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 from shutil import rmtree
 import csv
-import Learning as lg
+import Learning as Lg
 
 def learning(out_dim, h_dim, alpha, num_epochs, batch_size, file_name="resource/csv/new_data.csv", progress_bar=None):
     for path in Path('resource/images').glob('*'):
@@ -40,7 +40,7 @@ def learning(out_dim, h_dim, alpha, num_epochs, batch_size, file_name="resource/
         writer.writerow(["x", "y"])
 
     counter2 = write_csv(file_name, progress_bar, binary_list, data_counter)
-    lg.new_learn(int(out_dim), int(h_dim), float(alpha), int(num_epochs), int(batch_size), progress_bar, counter2,
+    Lg.new_learn(int(out_dim), int(h_dim), float(alpha), int(num_epochs), int(batch_size), progress_bar, counter2,
                  file_name)
 
 

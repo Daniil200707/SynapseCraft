@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image
+import shutil
 
 y_dict = {}
 
@@ -41,15 +42,13 @@ def image_to_binary(image_path):
     :return: binary list or None
     """
     try:
-        # Открываем изображение
         img = Image.open(image_path)
 
-        # Преобразуем изображение в бинарный список
         binary_list = list(img.tobytes())
 
         return binary_list
     except Exception as e:
-        print(f"Ошибка при преобразовании изображения в бинарный список: {e}")
+        print(f"Помилка при перетворенні зображення на бінарний список: {e}")
         return None
 
 def create_bin_list(list_of_paths: dict, count1: int, progress_bar):
@@ -79,3 +78,9 @@ def create_bin_list(list_of_paths: dict, count1: int, progress_bar):
         bin_dict[path_to_file[0]] = bin_list
 
     return bin_dict, count1
+
+def save():
+    shutil.move("resource/arr/b1.np", "C:\\Users\\Валюша\\Downloads")
+    shutil.move("resource/arr/b2.np", "C:\\Users\\Валюша\\Downloads")
+    shutil.move("resource/arr/W1.np", "C:\\Users\\Валюша\\Downloads")
+    shutil.move("resource/arr/W2.np", "C:\\Users\\Валюша\\Downloads")
