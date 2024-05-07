@@ -85,8 +85,10 @@ def change_brightness(image_list: list):
         img_brightness = enhancer.enhance(answer)
         img_brightness.save(f"resource/brightness images/{time.time()}.png")
 
-def destroy_all(listbox_list):
-    pass
+def destroy_all():
+    for i in range(len(listbox_list)):
+        deleted_element = listbox_list.pop()
+        deleted_element.destroy()
 
 if __name__ == "__main__":
     change_brightness([])
