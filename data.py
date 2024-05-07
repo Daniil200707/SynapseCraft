@@ -3,6 +3,7 @@ from PIL import Image
 import shutil
 
 y_dict = {}
+listbox_list = []
 
 def create_listbox(window, y_list: list, self_image_listbox):
     """
@@ -19,6 +20,7 @@ def create_listbox(window, y_list: list, self_image_listbox):
     button = Button(window, text=new_text, command=lambda: replace_data(self_image_listbox.get(0, END),
                                                                         listbox, self_image_listbox, new_text))
     button.pack()
+    listbox_list.append(listbox)
 
 def replace_data(images_list, input_listbox, image_listbox, y):
     """
