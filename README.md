@@ -1,4 +1,5 @@
 # SynapseCraft
+![alt](brain-3449630_640.png "brain-3449630_640")
 A program that turns pictures into weights and biases for neural networks
 
 ## Getting Started
