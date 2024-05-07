@@ -5,6 +5,8 @@ from pathlib import Path
 from shutil import rmtree
 import csv
 import Learning as Lg
+from tkinter import simpledialog
+from PIL import Image, ImageEnhance
 
 def learning(out_dim, h_dim, alpha, num_epochs, batch_size, file_name="resource/csv/new_data.csv", progress_bar=None):
     for path in Path('resource/images').glob('*'):
@@ -71,3 +73,20 @@ def write_csv(csv_name: str, csv_progress_bar, data: dict, count2: int):
             csv_progress_bar.update()
 
         return count2
+
+def change_brightness(image_list: list):
+    answer = simpledialog.askfloat("Яскравість", "Введіть значення яскравості зображення")
+    print(answer)
+
+    for image in image_list:
+        img = Image.open(image)
+        enhancer = ImageEnhance.Brightness(img)
+
+        img_brightness = enhancer.enhance(answer)
+        img_brightness.save(f"resource/brightness images/{time.time()}.png")
+
+def destroy_all(listbox_list):
+    pass
+
+if __name__ == "__main__":
+    change_brightness([])
