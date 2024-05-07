@@ -125,6 +125,7 @@ class App:
         file_menu.add_command(label="Зберегти", command=save)
 
         menu_bar.add_cascade(label="Файл", menu=file_menu)
+        menu_bar.add_command(label="Яскравість")
 
         root.configure(menu=menu_bar)
 
