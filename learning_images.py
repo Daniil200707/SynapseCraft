@@ -74,16 +74,19 @@ def write_csv(csv_name: str, csv_progress_bar, data: dict, count2: int):
 
         return count2
 
-def change_brightness(image_list: list):
+def change_brightness():
     answer = simpledialog.askfloat("Яскравість", "Введіть значення яскравості зображення")
     print(answer)
 
-    for image in image_list:
-        img = Image.open(image)
-        enhancer = ImageEnhance.Brightness(img)
+    for image_list in y_dict.items():
+        for image in image_list[1]:
+            img = Image.open(image)
+            enhancer = ImageEnhance.Brightness(img)
 
-        img_brightness = enhancer.enhance(answer)
-        img_brightness.save(f"resource/brightness images/{time.time()}.png")
+            img_brightness = enhancer.enhance(answer)
+            img_brightness.save(f"resource/brightness images/{time.time()}.png")
+
+            destroy_all()
 
 def destroy_all():
     for i in range(len(listbox_list)):
@@ -91,4 +94,4 @@ def destroy_all():
         deleted_element.destroy()
 
 if __name__ == "__main__":
-    change_brightness([])
+    change_brightness()
