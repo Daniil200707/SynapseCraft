@@ -21,6 +21,7 @@ def create_listbox(window, y_list: list, self_image_listbox):
                                                                         listbox, self_image_listbox, new_text))
     button.pack()
     listbox_list.append(listbox)
+    listbox_list.append(button)
 
 def replace_data(images_list, input_listbox, image_listbox, y):
     """

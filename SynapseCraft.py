@@ -2,6 +2,7 @@ from tkinter import filedialog
 from tkinter import ttk
 from tkinter.ttk import Progressbar
 from learning_images import *
+from brighthess_all import *
 
 class ScrollableFrame(Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -125,7 +126,7 @@ class App:
         file_menu.add_command(label="Зберегти", command=save)
 
         menu_bar.add_cascade(label="Файл", menu=file_menu)
-        menu_bar.add_command(label="Яскравість", command=change_brightness)
+        menu_bar.add_command(label="Яскравість", command=lambda: change_brightness(self.out_list))
 
         root.configure(menu=menu_bar)
 
