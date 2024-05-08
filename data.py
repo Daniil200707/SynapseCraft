@@ -83,7 +83,7 @@ def create_bin_list(list_of_paths: dict, count1: int, progress_bar):
     return bin_dict, count1
 
 def save():
-    shutil.move("resource/arr/b1.np", "C:\\Users\\Валюша\\Downloads")
-    shutil.move("resource/arr/b2.np", "C:\\Users\\Валюша\\Downloads")
-    shutil.move("resource/arr/W1.np", "C:\\Users\\Валюша\\Downloads")
-    shutil.move("resource/arr/W2.np", "C:\\Users\\Валюша\\Downloads")
+    shutil.copy("resource/arr/b1.np", "C:\\Users\\Валюша\\Downloads")
+    shutil.copy("resource/arr/b2.np", "C:\\Users\\Валюша\\Downloads")
+    shutil.copy("resource/arr/W1.np", "C:\\Users\\Валюша\\Downloads")
+    shutil.copy("resource/arr/W2.np", "C:\\Users\\Валюша\\Downloads")

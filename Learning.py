@@ -1,8 +1,7 @@
 import random
 import numpy as np
 import datasets
-import json
-import csv
+import time
 
 INPUT_DIM = 1
 
@@ -141,3 +140,5 @@ def new_learn(out_dim, h_dim, alpha, num_epochs, batch_size, progress_bar, count
 
     if progress_bar:
         progress_bar.configure(value=100)
+        time.sleep(1)
+        progress_bar.configure(value=0)

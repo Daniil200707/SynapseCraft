@@ -5,9 +5,6 @@ from pathlib import Path
 from shutil import rmtree
 import csv
 import Learning as Lg
-from tkinter import simpledialog
-from PIL import Image, ImageEnhance
-from random import randint
 
 def learning(out_dim, h_dim, alpha, num_epochs, batch_size, file_name="resource/csv/new_data.csv", progress_bar=None):
     for path in Path('resource/images').glob('*'):
@@ -74,44 +71,6 @@ def write_csv(csv_name: str, csv_progress_bar, data: dict, count2: int):
             csv_progress_bar.update()
 
         return count2
-
-def change_brightness(y_list):
-    answer = simpledialog.askfloat("Яскравість", "Введіть значення яскравості зображення")
-    print(answer)
-
-    letters_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-                    'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
-
-    one = 1
-
-    ten = 10
-
-    name_len = randint(one, ten)
-
-    name = ''
-    for i in range(name_len):
-        len_list = len(letters_list)
-        index = randint(one, len_list)
-        letter = letters_list[index]
-        name += letter
-
-    for image_list in y_dict.items():
-        for image in image_list[1]:
-            img = Image.open(image)
-            enhancer = ImageEnhance.Brightness(img)
-
-            img_brightness = enhancer.enhance(answer)
-            img_brightness.save(f"C:\\Users\\Валюша\\Downloads{time.time()}.png")
-
-            destroy_all(y_list)
-
-def destroy_all(destroy_y):
-    for i in range(len(listbox_list)):
-        deleted_element = listbox_list.pop()
-        deleted_element.destroy()
-
-    for j in range(len(destroy_y)):
-        destroy_y.pop()
 
 if __name__ == "__main__":
     upload_images('0', Listbox())

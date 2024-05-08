@@ -28,7 +28,7 @@ def change_brightness(y_list):
             enhancer = ImageEnhance.Brightness(img)
 
             img_brightness = enhancer.enhance(answer)
-            img_brightness.save(f"C:\\Users\\Валюша\\Downloads\\{name}.png")
+            img_brightness.save(f"D:\\Downloads\\{name}.png")
 
     destroy_all(y_list)
 
