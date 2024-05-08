@@ -1,5 +1,5 @@
 # SynapseCraft
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20over%20170%20free%20neural%20network%20training%20app%204&url=https://github.com/Daniil200707/SynapseCraft.git&via=froala&hashtags=training,scikit-learn,templates,blocks,developers)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20a%20free%20neural%20network%20training%20app%204&url=https://github.com/Daniil200707/SynapseCraft.git&via=froala&hashtags=training,scikit-learn,templates,blocks,developers)
 ![alt](brain-3449630_640.png "brain-3449630_640")
 A program that turns pictures into weights and biases for neural networks
 

@@ -2,14 +2,16 @@ from data import listbox_list, y_dict
 from tkinter import simpledialog
 from random import randint
 from PIL import Image, ImageEnhance
+from tkinter import *
 
 def change_brightness(y_list):
     answer = simpledialog.askfloat("Яскравість", "Введіть значення яскравості зображення")
 
     for image_list in y_dict.items():
         for image in image_list[1]:
-            letters_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-                            't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ']
+            letters_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+                            's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                            ' ']
 
             one = 1
 
@@ -32,10 +34,11 @@ def change_brightness(y_list):
 
     destroy_all(y_list)
 
-def destroy_all(destroy_y):
-    for i in range(len(listbox_list)):
-        deleted_element = listbox_list.pop()
+def destroy_all(destroy_y=None, deleted=listbox_list):
+    for i in range(len(deleted)):
+        deleted_element = deleted.pop()
         deleted_element.destroy()
 
-    for j in range(len(destroy_y)):
-        destroy_y.pop()
+    if destroy_y is not None:
+        for j in range(len(destroy_y)):
+            destroy_y.pop()
