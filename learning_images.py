@@ -44,7 +44,7 @@ def learning(out_dim, h_dim, alpha, num_epochs, batch_size, file_name="resource/
                  file_name)
 
 
-def upload_images(new_list, image_listbox):
+def upload_images(new_list, image_listbox, string_var):
     """
     New list export to filename. File name insert to image listbox
     :param new_list: export to file name
@@ -53,6 +53,7 @@ def upload_images(new_list, image_listbox):
     """
     for filename in new_list:
         image_listbox.insert(END, filename)
+    string_var.set(len(image_listbox.get(0, END)))
 
 def write_csv(csv_name: str, csv_progress_bar, data: dict, count2: int):
     for element in data.items():

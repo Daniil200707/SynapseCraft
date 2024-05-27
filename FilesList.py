@@ -1,6 +1,7 @@
 from tkinter import filedialog
 from learning_images import upload_images, learning
-def open_files(image_listbox, language):
+from tkinter import *
+def open_files(image_listbox, language, string_var):
     """Open dialog to select files, save selected files, and upload images to a listbox.
 
     Opens a file dialog to allow the user to select multiple image files.
@@ -14,14 +15,14 @@ def open_files(image_listbox, language):
                                             filetypes=(("Image files", "*.png *.jpg"), ("All files", "*.*"))
                                             )
         files_list = files
-        upload_images(files_list, image_listbox)
+        upload_images(files_list, image_listbox, string_var)
     elif language == "English":
         files = filedialog.askopenfilenames(
             title="Chose Files",
             filetypes=(("Image files", "*.png *.jpg"), ("All files", "*.*"))
         )
         files_list = files
-        upload_images(files_list, image_listbox)
+        upload_images(files_list, image_listbox, string_var)
 
 
 widgets_list = []

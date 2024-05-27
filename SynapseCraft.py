@@ -69,8 +69,6 @@ class App:
         scrollable_frame = ScrollableFrame(root)
         scrollable_frame.pack(fill="both", expand=True)
         self.out_list = []
-        self.image_listbox = Listbox(scrollable_frame.scrollable_frame, width=100, bg="#505050")
-        self.image_listbox.pack()
         load_canvas = Progressbar(root, orient=HORIZONTAL, mode="determinate", length=200)
         load_canvas.place(x=750, y=150)
         name_entry = Entry(root)
@@ -87,10 +85,10 @@ class App:
         menu_bar.add_cascade(label="File", menu=file_menu)
         menu_bar.add_command(label="Brightness", command=lambda: change_brightness(self.out_list))
         menu_bar.add_command(label="Language", command=lambda: translate(root, scrollable_frame.scrollable_frame,
-                                                                         self.out_list, self.image_listbox,
+                                                                         self.out_list,
                                                                          batch_size_entry, h_dim_entry, out_dim_entry,
                                                                          load_canvas, name_entry))
-        gui_translate(root, scrollable_frame.scrollable_frame, self.out_list, self.image_listbox, batch_size_entry,
+        gui_translate(root, scrollable_frame.scrollable_frame, self.out_list, batch_size_entry,
                       h_dim_entry, out_dim_entry, load_canvas, name_entry)
         root.configure(menu=menu_bar)
         root.mainloop()
